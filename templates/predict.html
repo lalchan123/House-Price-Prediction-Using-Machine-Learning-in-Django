@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Predict</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+        integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"
+        integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-image: url("{% static 'b3.jpg'%}");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .main {
+            position: fixed;
+            top: 120px;
+            left: 410px;
+            width: 700px;
+            height: 525px;
+            background-color: gainsboro;
+            align-items: center;
+            border-radius: 5%;
+            border-bottom: 10px;
+        }
+
+        div {
+            padding: 12px;
+        }
+
+        input[type=submit] {
+            background-color: rgb(131, 7, 48);
+            color: white;
+            cursor: pointer;
+            padding: 5px 15px;
+            font-weight: bold;
+            border-radius: 5%;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        h2 {
+            font-size: 30px;
+            color: DarkRed;
+        }
+    </style>
+</head>
+
+<body style="text-align: center;">
+    <div class="main">
+        <h1>Please Enter the following values: </h1>
+        <form method="POST" action="{% url 'result' %}">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-sm-4" style="background-color: bisque;">
+                    <p>Avg. Area Income</p>
+                    <input type="text" name="n1" required>
+                </div>
+                <div class="col-sm-4" style="background-color: darkseagreen;">
+                    <p>Avg. Area House Age</p>
+                    <input type="text" name="n2" required>
+                </div>
+                <div class="col-sm-4" style="background-color: lightpink;">
+                    <p>Avg. Area Number of Rooms</p>
+                    <input type="text" name="n3" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4" style="background-color: turquoise;">
+                    <p>Avg. Area Number of Bedrooms</p>
+                    <input type="text" name="n4" required>
+                </div>
+                <div class="col-sm-4" style="background-color: rosybrown;">
+                    <p>Area Population</p>
+                    <input type="text" name="n5" required>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="PREDICT">
+                <h1></h1>
+                <a href="{% url 'record' %}" class="btn btn-primary">Show Record</a>
+            </div>
+            <h4>{{ result }}</h4>
+        </form>
+    </div>
+
+</body>
+
+</html>
